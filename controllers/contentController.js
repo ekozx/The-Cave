@@ -1,10 +1,12 @@
 var Post = require('../models/post.js');
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./credentials.json')
 
 exports.index = function(req, res) {
   posts = [];
 
   createPosts();
-  
+
   // postNames = ["Zapcord", "Visual-Computing-with-Processing"];
   // posts = [];
   // for (var i = 0; i < postNames.length; i++) {
@@ -23,5 +25,17 @@ exports.index = function(req, res) {
 };
 
 function createPosts() {
-
-}
+  s3Path = "http://s3.amazonaws.com/thecave/sub-wallpapers"
+  console.log(process.env);
+  console.log(AWS.config);
+  var s3 = new AWS.S3();
+  s3.listBuckets(function(err, data) {
+    if (err) { console.log("Error:", err); }
+    else {
+      for (var index in data.Buckets) {
+        var bucket = data.Buckets[index];
+        console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);
+      }
+    }
+  });
+};
