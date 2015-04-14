@@ -1,5 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 The Cave
+  ul.image-container
+    each post in posts
+      li.blog-item: img.blog-image(src=post)

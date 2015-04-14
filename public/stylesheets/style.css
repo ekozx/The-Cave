@@ -1,8 +1,16 @@
+a {
+  color: #00B7FF;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-  color: #00B7FF;
+.blog-image {
+  max-width: 500px;
+}
+.image-container {
+  list-style-type: none;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }

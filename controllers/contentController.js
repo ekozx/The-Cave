@@ -2,37 +2,23 @@ var Post = require('../models/post.js');
 var AWS = require('aws-sdk');
 AWS.config.loadFromPath('./credentials.json')
 
-exports.index = function(req, res) {
-  posts = [];
-
-  createPosts();
-
-  // postNames = ["Zapcord", "Visual-Computing-with-Processing"];
-  // posts = [];
-  // for (var i = 0; i < postNames.length; i++) {
-  //   Post.findOne({indexTitle: postNames[i]}, function(err, post) {
-  //     if(post != null) {
-  //       posts.push(post);
-  //     } else {
-  //       res.render('/404');
-  //     }
-  //     if(posts.length === postNames.length) {
-  //       res.render('index', {posts: posts});
-  //     }
-  //   });
-  // }
-  res.render('index', {posts: posts});
-};
-
-function createPosts() {
-  s3Path = "http://s3.amazonaws.com/thecave/sub-wallpapers"
+exports.index = function(req, res, app) {
+  s3Path = "https://s3-us-west-2.amazonaws.com/thecave/"
   var s3 = new AWS.S3();
-  s3.listBuckets(function(err, data) {
+  var posts = [];
+
+  s3.listObjects({Bucket: 'thecave', Prefix: 'sub-wallpapers'}, function(err, data) {
     if (err) { console.log("Error:", err); }
     else {
-      for (var index in data.Buckets) {
-        var bucket = data.Buckets[index];
-        console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);
+      for(var index in data.Contents) {
+        key = data.Contents[index]['Key'];
+        if(key) {
+          posts.push( s3Path + key );
+        }
+        if(Object.keys(data.Contents).length === posts.length) {
+          posts = posts.slice(1, posts.length);
+          res.render('index', {posts: posts});
+        }
       }
     }
   });
