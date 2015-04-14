@@ -1,9 +1,11 @@
 var Post = require('../models/post.js');
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./credentials.json')
 
 exports.index = function(req, res, app) {
-  s3Path = "https://s3-us-west-2.amazonaws.com/thecave/"
+  console.log(process.env);
+  AWS.config.loadFromPath('./credentials.json');
+
+  s3Path = "https://s3-us-west-2.amazonaws.com/thecave/";
   var s3 = new AWS.S3();
   var posts = [];
 
