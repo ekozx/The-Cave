@@ -4,7 +4,9 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    ul.nav-list
+  #navcontainer
+    ul#navlist
       a(href='/'): li home
       a(href='/about'): li about
-    block content
+
+  block content
