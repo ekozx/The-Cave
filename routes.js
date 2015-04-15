@@ -13,6 +13,7 @@ module.exports = function(app, express) {
   // }
   // app.get('/processing', projects.processing)
   app.get('/', content.index, app);
+  app.get('/about', content.about);
   // app.get('projects', projects.index);
   // app.get('/resume', resume.index);
   // app.get('/blog', blog.index);

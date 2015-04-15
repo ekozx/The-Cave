@@ -27,3 +27,7 @@ exports.index = function(req, res, app) {
     }
   });
 };
+
+exports.about = function(req, res) {
+  res.render('about');
+}
