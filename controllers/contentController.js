@@ -3,10 +3,10 @@ var AWS = require('aws-sdk');
 
 exports.index = function(req, res, app) {
   console.log(process.env);
-  if (app.get('env') === 'development') {
-    AWS.config.loadFromPath('./credentials.json');
-  } else {
+  if (process.env.NODE_ENV === 'production') {
     
+  } else {
+    AWS.config.loadFromPath('./credentials.json');
   }
   s3Path = "https://s3-us-west-2.amazonaws.com/thecave/";
 

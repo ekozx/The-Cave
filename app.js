@@ -38,6 +38,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
+//TODO: currently allowing errors on production, should probably stop this
 if (app.get('env') === 'development' || app.get('env') === 'production') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
