@@ -58,12 +58,12 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var uriString =
-process.env.MONGOLAB_URI ||
-process.env.MONGOHQ_URL ||
-'mongodb://localhost/thecave';
+// var uriString =
+// process.env.MONGOLAB_URI ||
+// process.env.MONGOHQ_URL ||
+// 'mongodb://localhost/thecave';
 
-mongoose.connect(uriString);
+// mongoose.connect(uriString);
 
 // production error handler
 // no stacktraces leaked to user
