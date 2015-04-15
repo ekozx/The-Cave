@@ -6,9 +6,10 @@ exports.index = function(req, res, app) {
   if (app.get('env') === 'development') {
     AWS.config.loadFromPath('./credentials.json');
   } else {
-    s3Path = "https://s3-us-west-2.amazonaws.com/thecave/";
+    
   }
-  
+  s3Path = "https://s3-us-west-2.amazonaws.com/thecave/";
+
   var s3 = new AWS.S3();
   var posts = [];
 
