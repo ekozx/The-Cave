@@ -2,7 +2,6 @@ var Post = require('../models/post.js');
 var AWS = require('aws-sdk');
 
 exports.index = function(req, res, app) {
-  console.log(process.env);
   if (process.env.NODE_ENV !== 'production') {
     AWS.config.loadFromPath('./credentials.json');
   }

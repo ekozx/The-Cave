@@ -1,0 +1,7 @@
+{
+  "name": "borrowers",
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "dynamic": "https://github.com/wilfreddenton/dynamic.git"
+  }
+}
