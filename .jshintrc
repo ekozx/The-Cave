@@ -1,0 +1,8 @@
+{
+  "boss":      true,
+  "node":      true,
+  "newcap":    false,
+  "onecase":   true,
+  "lastsemic": true,
+  "indent":    2
+}
