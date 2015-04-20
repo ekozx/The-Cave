@@ -9205,5 +9205,5 @@ return jQuery;
 }));
 
 (function() {
-  
+  console.log("hi");
 })();

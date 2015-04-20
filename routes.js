@@ -2,21 +2,19 @@
 // var resume = require('./controllers/resumeController.js');
 // var blog = require('./controllers/blogController.js');
 var content = require('./controllers/contentController.js');
-// var admin = require('./controllers/adminController.js');
+var admin = require('./controllers/adminController.js');
 
-module.exports = function(app, express) {
-  // var User = require('./models/user.js');
-
-  // if (app.get('env') === 'development') {
-  //   app.get('/register', admin.register);
-  //   app.post('/register', admin.createUser);
-  // }
-  // app.get('/processing', projects.processing)
+module.exports = function(app, express, passport) {
   app.get('/', content.index, app);
   app.get('/about', content.about);
-  // app.get('projects', projects.index);
-  // app.get('/resume', resume.index);
-  // app.get('/blog', blog.index);
+  app.get('/login', admin.login)
+  app.get('/dashboard', isLoggedIn, admin.upload)
 
-  // app.get('/single/:indexTitle', blog.single)
+  function isLoggedIn(req, res, next) {
+    if (req.user) {
+      next();
+    } else {
+      res.redirect('/login');
+    }
+  }
 };

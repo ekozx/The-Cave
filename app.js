@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var http = require('http');
+var passport = require('passport');
 var app = express();
 var session = require('express-session');
 
@@ -22,9 +23,11 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({secret: "mySecret", saveUninitialized: true, resave: true}));
 app.use(express.static(path.join(__dirname, 'public')));
-
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
 //routes:
-require('./routes.js')(app, express);
+require('./routes.js')(app, express, passport);
 
 
 /// catch 404 and forward to error handler
