@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
-    livereload = require('gulp-livereload');
+    livereload = require('gulp-livereload'),
+    nodemon = require('gulp-nodemon');
     
 gulp.task('sass', function() {
   return sass('public/stylesheets/sass/style.scss', {style: 'expanded'})
@@ -57,4 +58,5 @@ gulp.task('watch', function() {
   gulp.watch(['bower_components/normalize.css/normalize.css', 'bower_components/dynamic/css/dynamic.css', 'public/stylesheets/sass/style.scss'], ['stylesheets']);
   gulp.watch('public/javascripts/limbo/*.js', ['javascripts']);
   gulp.watch('views/**', ['templates']);
+  nodemon({script: 'app.js'});
 });
