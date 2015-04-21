@@ -1,3 +1,6 @@
+var LocalStrategy = require('passport-local').Strategy,
+    User = require('../models/user.js');
+
 exports.login = function(req, res) {
   res.render('login');
 };
@@ -21,4 +24,29 @@ exports.createUser = function(req, res) {
       res.redirect('/');
     });
   });
+};
+exports.attemptLogIn = function (passport) {
+  // var User = require('../models/user.js');
+  // var LocalStrategy = require('passport-local').Strategy;
+  // console.log("passport");
+  // passport.use(new LocalStrategy(User.authenticate()));
+  // passport.serializeUser(User.serializeUser());
+  // passport.deserializeUser(User.deserializeUser());
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login'
+  });
+};
+exports.passportSetup = function(passport) {
+  passport.use(new LocalStrategy(User.authenticate()));
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
+}
+exports.isLoggedIn = function (req, res, next) {
+  console.log("isLoggedIn function");
+  if (req.user) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
 };
