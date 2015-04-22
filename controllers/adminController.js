@@ -7,8 +7,8 @@ exports.login = function(req, res) {
 exports.new = function(req, res) {
   res.render('new');
 };
-exports.upload = function(req, res) {
-
+exports.dashboard = function(req, res) {
+  res.render('dashboard');
 }
 // Generating users shouldn't be neccessary: will delete if they can be added manually
 exports.register = function(req, res) {

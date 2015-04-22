@@ -60,12 +60,37 @@ app.use(function(err, req, res, next) {
     });
 });
 
+//Mongoose and MongoDB connection
 var uriString =
 process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL ||
-'mongodb://localhost/thecave';
+'mongodb://localhost/herestosatruday';
 
 mongoose.connect(uriString);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+//TODO: Kind of a dirty user insertion here, can be removed once the user is in.
+db.once('open', function (callback) {
+  console.log("Database connection opened :)");
+  console.log("Working in" + app.get('env'));
+  if (app.get('env') === 'development') {
+    var User = require('./models/user.js');
+    User.findOne({username: 'test1'}, function(err, user) {
+      if(user != null) {
+        console.log("Test user exists.");
+      } else {
+        console.log("inserting a user");
+        User.register(new User({ username : 'test1' }), 'password', function(err, user) {
+          if (err) {
+            return console.error(err);
+          } else {
+            res.redirect('/');
+          }
+        });
+      }
+    });
+  }
+});
 
 // production error handler
 // no stacktraces leaked to user

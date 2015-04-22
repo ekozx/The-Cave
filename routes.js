@@ -10,7 +10,7 @@ module.exports = function(app, express, passport) {
   app.get('/login', admin.login);
   app.get('/dashboard',
           admin.isLoggedIn,
-          admin.upload);
+          admin.dashboard);
   //HTTP POST
   app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
