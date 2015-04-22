@@ -1,14 +1,14 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var http = require('http');
-var passport = require('passport');
-var app = express();
-var session = require('express-session');
+var express = require('express'),
+    path = require('path'),
+    favicon = require('static-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    http = require('http'),
+    passport = require('passport'),
+    app = express(),
+    session = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +29,6 @@ app.use(passport.session());
 //routes:
 require('./routes.js')(app, express, passport);
 
-
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -41,8 +40,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-//TODO: currently allowing errors on production, should probably stop this
-if (app.get('env') === 'development' || app.get('env') === 'production') {
+if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {

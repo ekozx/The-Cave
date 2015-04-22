@@ -10,7 +10,7 @@ exports.new = function(req, res) {
 exports.upload = function(req, res) {
 
 }
-// Generating users is no longer neccessary.
+// Generating users shouldn't be neccessary: will delete if they can be added manually
 exports.register = function(req, res) {
   res.render('register');
 };
@@ -25,13 +25,8 @@ exports.createUser = function(req, res) {
     });
   });
 };
+//Passport related function: attemptLogIn, passPortSetup, isLoggedIn
 exports.attemptLogIn = function (passport) {
-  // var User = require('../models/user.js');
-  // var LocalStrategy = require('passport-local').Strategy;
-  // console.log("passport");
-  // passport.use(new LocalStrategy(User.authenticate()));
-  // passport.serializeUser(User.serializeUser());
-  // passport.deserializeUser(User.deserializeUser());
   passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login'
