@@ -75,12 +75,12 @@ db.once('open', function (callback) {
   console.log("Working in" + app.get('env'));
   if (app.get('env') === 'development') {
     var User = require('./models/user.js');
-    User.findOne({username: 'test1'}, function(err, user) {
+    User.findOne({username: 'test2'}, function(err, user) {
       if(user != null) {
         console.log("Test user exists.");
       } else {
-        console.log("inserting a user");
-        User.register(new User({ username : 'test1' }), 'password', function(err, user) {
+        console.log("inserting a user: log in with username: test1 password: password");
+        User.register(new User({ username : 'test2' }), 'password', function(err, user) {
           if (err) {
             return console.error(err);
           } else {
