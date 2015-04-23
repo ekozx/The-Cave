@@ -1,5 +1,5 @@
-var Post = require('../models/post.js');
-var AWS = require('aws-sdk');
+var Post = require('../models/post.js'),
+    AWS = require('aws-sdk');
 
 //Fetches image url's from the s3 bucket 'thecave' for use on the index page.
 //TODO: Rename the bucket and this project to "Here's to Saturday".
@@ -12,7 +12,7 @@ exports.index = function(req, res, app) {
   if (process.env.NODE_ENV !== 'production') {
     AWS.config.loadFromPath('./credentials.json');
   }
-  
+
   s3.listObjects({Bucket: 'thecave', Prefix: 'sub-wallpapers'}, function(err, data) {
     if (err) { console.log("Error:", err); }
     else {
