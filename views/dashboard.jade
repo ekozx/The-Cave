@@ -2,13 +2,18 @@ h1 Dashboard
 
 input#files(type='file')
 p#status Please select a file
-form(method='POST', action='/submit_form/')
+form(method='POST', action='/new')
   input#avatar_url(type='hidden', name='avatar_url', value='/public/images/default.png')
   |     
   input(type='text', name='caption', placeholder='Caption')
+  br
+  |     
+  input(type='text', name='title', placeholder='Title')
   br
   p Is this photo in a group?
   input(type='checkbox', name='group')
   br
   |     
   input(type='submit', value='Update profile')
+
+script(type='text/javascripts', src="/javascripts/s3upload/dashboardUpload.js")
