@@ -28,13 +28,13 @@ gulp.task('exportcss', ['sass'], function() {
 });
 
 gulp.task('lintjs', function() {
-  return gulp.src('public/javascripts/limbo/*.js')
+  return gulp.src('public/javascripts/limbo/**/*.js')
   .pipe(jshint('.jshintrc'))
   .pipe(jshint.reporter('default'))
 });
 
 gulp.task('exportjs', ['lintjs'], function() {
-  return gulp.src(['bower_components/jquery/dist/jquery.js', 'public/javascripts/limbo/*.js'])
+  return gulp.src(['bower_components/jquery/dist/jquery.js', 'public/javascripts/limbo/**/*.js'])
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('public/javascripts'))
     .pipe(rename({suffix: '.min'}))
@@ -56,7 +56,7 @@ gulp.task('javascripts', ['lintjs', 'exportjs']);
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(['bower_components/normalize.css/normalize.css', 'bower_components/dynamic/css/dynamic.css', 'public/stylesheets/sass/style.scss'], ['stylesheets']);
-  gulp.watch('public/javascripts/limbo/*.js', ['javascripts']);
+  gulp.watch('public/javascripts/limbo/**/*.js', ['javascripts']);
   gulp.watch('views/**', ['templates']);
   nodemon({script: 'app.js'});
 });
