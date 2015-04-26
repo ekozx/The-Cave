@@ -1,14 +1,14 @@
 (function() {
   console.log("dashboardUpload ...");
-  $('#file_input').change = function() {
-    var files = $('#file_input').files;
-    var file = files[0];
+  $('#file_input').change(function() {
+    file = $('#file_input').val();
     if(file == null) {
       console.log("no files");
     } else {
+      console.log(file);
       get_signed_request(file);
     }
-  }
+  });
 })();
 
 function get_signed_request(file) {
